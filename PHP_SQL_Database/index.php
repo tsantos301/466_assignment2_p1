@@ -11,16 +11,17 @@ if(isset($_SESSION['username'])==0){
   $_SESSION['msg'] = "You must login to view this page";
   header("Location: login.php");
 }
-
-
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ?>
 
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
 <head>
   <title>Homepage</title>
+    <style>
+        <?php include 'CSS/main.css'; ?>
+    </style>
 </head>
 
 <body>
@@ -39,7 +40,6 @@ if(isset($_SESSION['username'])==0){
   <?php endif ?>
 
 <!-- if the user logs in print information about them -->
-<?php echo isset($_SESSION['username']); ?>
 
   <?php if(isset($_SESSION['username'])) : ?>
 

@@ -1,0 +1,48 @@
+body{
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+#welcome{
+    font-family: 'Pacifico', cursive;
+    font-size: 60px;
+    text-align: center;
+    animation-name: swing-top-fwd,roll-out-blurred-left;
+    animation-duration: 800ms;
+    animation-delay: 0ms, 1600ms;
+    animation-timing-function:  cubic-bezier(0.645, 0.045, 0.355, 1), cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    animation-iteration-count: 1,1;
+    animation-fill-mode: forwards, both;
+}
+#welcome-text{
+    font-family: 'Pacifico', cursive;
+    font-size: 60px;
+    text-align: center;
+    animation-name: scale-in-bl;
+    animation-duration: 800ms;
+    animation-delay: 2700ms;
+    animation-timing-function:  cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+
+}
+Button{
+    font-family: 'Quicksand', sans-serif;
+    font-style: oblique;
+    font-size: 20px;
+    text-align: center;
+    cursor: auto; /*changes the mouse cursor when hovered over.*/
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: black;
+    background-color: #2E2E2E;
+    margin: 20px;
+    color: white;
+    width: 300px;
+    height: 40px;
+    border-radius: 30px; /* Used to make the shape curved*/
+
+}
+
+.error{
+    color: red;
+}

@@ -1,8 +1,12 @@
 <?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
 <head>
   <title>Registration</title>
+    <style>
+        <?php include 'CSS/main.css'; ?>
+    </style>
 </head>
 
 <body>
@@ -13,7 +17,6 @@
 
     <!-- action word determines what will be run when you submit the form -->
     <form action="registration.php" method="post">
-      <?php include('errors.php') ?>
       <!-- the for attribute is used in accesibility services -->
       <div>
         <label for="username"> Username: </label>
@@ -38,6 +41,8 @@
       <button type="submit" name="register_user"> Submit </button>
 
       <p> Already a user? <a href= "login.php" > Login Here </a></p>
+
+    <?php include('errors.php') ?>
 
   </div>
 </body>

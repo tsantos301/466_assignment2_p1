@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 /*
 1. Start up our session
 2. Initialize variables
@@ -29,11 +29,11 @@ $email = mysqli_real_escape_string($db,$_POST['email']);
 $password_1 = mysqli_real_escape_string($db,$_POST['password_1']);
 $password_2 = mysqli_real_escape_string($db,$_POST['password_2']);
 
-// Validating user form input
+// Validating user form input -- dont need this. form does it for us.
 
-if(empty($username)) {array_push($errors,"Username is required");}
-if(empty($email)) {array_push($errors,"Email is required");}
-if(empty($password_1)) {array_push($errors,"Password is required");}
+//if(empty($username)) {array_push($errors,"Username is required");}
+//if(empty($email)) {array_push($errors,"Email is required");}
+//if(empty($password_1)) {array_push($errors,"Password is required");}
 //if(empty($password_2)) {array_push($errors,"Must verify password");}
 if($password_1 != $password_2){array_push($errors,"Passwords must match");}
 
@@ -44,17 +44,22 @@ $username_check = " SELECT * FROM Users WHERE username = '$username' or email = 
 $results = mysqli_query($db,$username_check);
 $user = mysqli_fetch_assoc($results);
 
-if($user){  // if the user exists
-    if($user['username'] === $username)
-      {array_push($errors, "Username already exists");}
-    if($user['email'] === $email)
-      {array_push($errors, "This email is already associated with an account");}
 
+//wait until the submit button is pressed to do the checks
+if(isset($_POST['register_user'])) {
+  if ($user) {  // if the user exists
+    if ($user['username'] === $username) {
+      array_push($errors, "Username already exists");
+    }
+    if ($user['email'] === $email) {
+      array_push($errors, "This email is already associated with an account");
+    }
+
+  }
 }
 
-//Register User if no errors in the form
-
-if(count($errors)==0){
+//Register User if no errors in the form and submit has been selected
+if(count($errors)==0 && isset($_POST['register_user'])){
   $password = md5($password_1); //hash the password
   $query_insertUser = "INSERT INTO Users (username,email,password) VALUES ('$username','$email','$password')";
 
@@ -68,7 +73,6 @@ if(count($errors)==0){
 //Login the User
 //button name was login_user
 if(isset($_POST['login_user'])){
-  echo "do we get here?";
   $username = mysqli_real_escape_string($db,$_POST['username']);
   $password = mysqli_real_escape_string($db,$_POST['password_1']);
 
@@ -81,17 +85,13 @@ if(isset($_POST['login_user'])){
   }
 
   //if(count($errors)==0){
-    echo "do we get here";
+
     $password = md5($password);
     $query_verifyPassword = "SELECT * FROM Users WHERE PASSWORD ='$password' AND username = '$username'";
     $verify = mysqli_query($db,$query_verifyPassword);
 
-    //echo $verify;
-
     //Check result of verification and decide what to do based on result
-
     if(mysqli_num_rows($verify)){
-      echo "do we get here";
       $_SESSION['username'] = $username;
       $_SESSION['success'] = "Logged in Successfully";
       header("location:index.php");

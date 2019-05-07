@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
 <head>
-  <title>Login</title>
+    <style>
+        <?php include 'CSS/main.css'; ?>
+    </style>
+    <title>Login</title>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h2>Login</h2>
+      <h2><u>Login</u></h2>
     </div>
 
     <!-- action word determines what will be run when you submit the form -->
