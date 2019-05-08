@@ -11,6 +11,12 @@ if(isset($_SESSION['username'])==0){
   $_SESSION['msg'] = "You must login to view this page";
   header("Location: login.php");
 }
+
+if(isset($_GET['logout'])){
+  session_destroy();
+  unset($_SESSION['username']);
+  header("Location: login.php");
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ?>
 
@@ -43,15 +49,88 @@ if(isset($_SESSION['username'])==0){
 
   <?php if(isset($_SESSION['username'])) : ?>
 
-    <h3>Welcome: <strong><?php echo $_SESSION['username']; ?></strong></h3>
+    <h3>Welcome: <strong><?php
+                            $username = $_SESSION['username'];
+                            echo $username;
+
+                          ?></strong></h3>
       <!--<button onclick="location.href="index.html?logout='1'">Logout</button>-->
       <!--    <button>Logout<a href="index.php?logout='1'" target="_blank"></a></button>-->
-      <p><a href="index.php">Logout</a></p>
+      <p><a href="index.php?logout='1'">Logout</a></p>
+
+      <form action="index.php" method="post">
+          <input type="text" name="urlSTRING" required/>
+          <input type="submit" name="addLINK" value="+" />
+      </form>
+
       <?php
-        session_destroy();
-        unset($_SESSION['username']);
+
+      function addLink($db, $urlString, $username){
+
+          $addQuery = "INSERT INTO Links (username, url )
+                VALUES ( '$username' , '$urlString')";
+
+          if ($db->query($addQuery) === FALSE) {
+              echo "Error added record: " . $db->error;
+          }
+          unset($_POST);
+          header("Location:index.php");
+         // getList($db,$username);
+
+
+      }
+
+
+      function removeLink($db,$urlString,$username){
+          $deleteQuery = "DELETE FROM Links WHERE url = '$urlString' AND username = '$username'";
+
+          if ($db->query($deleteQuery) === FALSE) {
+              echo "Error deleting record: " . $db->error;
+          }
+          getList($db,$username);
+      }
+
+      function getList($db,$username){
+          $sql = "SELECT url FROM Links WHERE username = '$username'";
+          $result = mysqli_query($db, $sql);
+          //$result = mysqli_fetch_array($result);
+
+
+          if (mysqli_num_rows($result) > 0) {
+              // output data of each row
+              while($row = mysqli_fetch_assoc($result)) {
+
+              echo "Link: " . $row['url']. "<br>";
+              }
+          } else {
+              echo "No links have been Bookmarked Yet";
+          }
+      }
+
+      // Create connection
+      $db = mysqli_connect('localhost','root','','Bookmarking') or die("could not connect to database");
+
+      getList($db,$username);
+
+      //if add button is clicked add a URL to the list
+      if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['addLINK']) and $_POST['urlSTRING']!= NULL) {
+
+          $urlString = $_POST['urlSTRING'];
+          addLink($db,$urlString,$username);
+          unset($_POST);
+
+      }
+
+      mysqli_close($db);
+
+
       ?>
+
+
+
   <?php endif ?>
+
+
 
 
 </body>
