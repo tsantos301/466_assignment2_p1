@@ -99,8 +99,10 @@ if(isset($_GET['logout'])){
           if (mysqli_num_rows($result) > 0) {
               // output data of each row
               while($row = mysqli_fetch_assoc($result)) {
-
-              echo "Link: " . $row['url']. "<br>";
+              $print = $row['url'];
+              $fullLink = "http://".$row['url'];
+              //echo "Link: <a>" . $row['url']. "</a><br>";
+              echo "<a target=\"_blank\" href='".$fullLink."'>$print</a><br>";
               }
           } else {
               echo "No links have been Bookmarked Yet";
