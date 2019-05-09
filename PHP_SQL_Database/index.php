@@ -31,7 +31,6 @@ if(isset($_GET['logout'])){
 </head>
 
 <body>
-  <h1>Bookmarking Service.</h1>
 
   <?php if(isset($_SESSION['success'])) : ?>
 
@@ -49,17 +48,19 @@ if(isset($_GET['logout'])){
 
   <?php if(isset($_SESSION['username'])) : ?>
 
-    <h3>Welcome: <strong><?php
+    <h3 style = "text-align: left;">Welcome: <strong><?php
                             $username = $_SESSION['username'];
                             echo $username;
 
                           ?></strong></h3>
 
+      <h1>Bookmarking Service.</h1>
       <form action="index.php" method="post">
+          <label>Enter link to add:</label><br>
           <input type="text" name="urlSTRING" required/>
           <input type="submit" name="addLINK" value="+" />
       </form>
-
+      <ul>
       <?php
 
       function addLink($db, $urlString, $username){
@@ -79,12 +80,17 @@ if(isset($_GET['logout'])){
 
 
       function removeLink($db,$urlString,$username){
+
           $deleteQuery = "DELETE FROM Links WHERE url = '$urlString' AND username = '$username'";
 
-          if ($db->query($deleteQuery) === FALSE) {
-              echo "Error deleting record: " . $db->error;
-          }
-          getList($db,$username);
+         mysqli_query($db,$deleteQuery);
+//          if ($db->query($deleteQuery) === FALSE) {
+//              echo "Error deleting record: " . $db->error;
+//          }else{
+//              echo "this should have worked";
+//          }
+          //getList($db,$username);
+          //mysqli_close($db);
       }
 
       function getList($db,$username){
@@ -99,7 +105,8 @@ if(isset($_GET['logout'])){
                   $print = $row['url'];
                   $fullLink = "http://".$row['url'];
                   //echo "Link: <a>" . $row['url']. "</a><br>";
-                  echo "<a target=\"_blank\" href='".$fullLink."'>$print</a><br>";
+                  //<li>Agnes<span class="close">x</span></li>
+                  echo "<li><span class=\"close\" onclick='pass_String()' >x</span><a target=\"_blank\" href='".$fullLink."'>$print</a></li>";
               }
           } else {
               echo "No links have been Bookmarked Yet";
@@ -120,18 +127,53 @@ if(isset($_GET['logout'])){
 
       }
 
-      mysqli_close($db);
+      echo isset($_POST['data']);
+      //if delete button is clicked add a URL to the list .... data is the url string passed to be deleted.
+      if(isset($_POST['data'])) {
+          echo "do we get to this?69696";
+          $urlDeleteString = $_POST['data'];
+          removeLink($db,$urlDeleteString,$username);
+          unset($_POST);
+
+      }
+
+      //removeLink($db,"www.apple.ca",$username);
+      //mysqli_close($db);
 
 
       ?>
-
+      </ul>
       <!--    ~~~~~~~~~~~Logout ~~~~~~~~~~~-->
 
       <!--<button onclick="location.href="index.html?logout='1'">Logout</button>-->
       <!--    <button>Logout<a href="index.php?logout='1'" target="_blank"></a></button>-->
       <p><a href="index.php?logout='1'">Logout</a></p>
 
+      <script>
+          function pass_String(urlString){
+              console.log("this is pass string");
+              var xhttp = new XMLHttpRequest();
+              xhttp.open("POST", "index.php", true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send("data="+urlString);
+              location.reload();
 
+          }
+          /* Get all elements with class="close" */
+          var closebtns = document.getElementsByClassName("close");
+          var i;
+
+          /* Loop through the elements, and hide the parent, when clicked on */
+          for (i = 0; i < closebtns.length; i++) {
+              closebtns[i].addEventListener("click", function () {
+                  this.parentElement.style.display = 'none';
+                  var urlString = this.parentElement.lastElementChild.innerHTML.toString();
+                  console.log(urlString);
+                  pass_String(urlString);
+
+              });
+          }
+      </script>
 
 
 
