@@ -31,7 +31,7 @@ if(isset($_GET['logout'])){
 </head>
 
 <body>
-  <h1>This is the homepage.</h1>
+  <h1>Bookmarking Service.</h1>
 
   <?php if(isset($_SESSION['success'])) : ?>
 
@@ -54,9 +54,6 @@ if(isset($_GET['logout'])){
                             echo $username;
 
                           ?></strong></h3>
-      <!--<button onclick="location.href="index.html?logout='1'">Logout</button>-->
-      <!--    <button>Logout<a href="index.php?logout='1'" target="_blank"></a></button>-->
-      <p><a href="index.php?logout='1'">Logout</a></p>
 
       <form action="index.php" method="post">
           <input type="text" name="urlSTRING" required/>
@@ -75,7 +72,7 @@ if(isset($_GET['logout'])){
           }
           unset($_POST);
           header("Location:index.php");
-         // getList($db,$username);
+          // getList($db,$username);
 
 
       }
@@ -99,10 +96,10 @@ if(isset($_GET['logout'])){
           if (mysqli_num_rows($result) > 0) {
               // output data of each row
               while($row = mysqli_fetch_assoc($result)) {
-              $print = $row['url'];
-              $fullLink = "http://".$row['url'];
-              //echo "Link: <a>" . $row['url']. "</a><br>";
-              echo "<a target=\"_blank\" href='".$fullLink."'>$print</a><br>";
+                  $print = $row['url'];
+                  $fullLink = "http://".$row['url'];
+                  //echo "Link: <a>" . $row['url']. "</a><br>";
+                  echo "<a target=\"_blank\" href='".$fullLink."'>$print</a><br>";
               }
           } else {
               echo "No links have been Bookmarked Yet";
@@ -127,6 +124,14 @@ if(isset($_GET['logout'])){
 
 
       ?>
+
+      <!--    ~~~~~~~~~~~Logout ~~~~~~~~~~~-->
+
+      <!--<button onclick="location.href="index.html?logout='1'">Logout</button>-->
+      <!--    <button>Logout<a href="index.php?logout='1'" target="_blank"></a></button>-->
+      <p><a href="index.php?logout='1'">Logout</a></p>
+
+
 
 
 
