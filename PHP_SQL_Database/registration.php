@@ -1,3 +1,4 @@
+<?php include 'navigation.php'; ?>
 <?php include('server.php') ?>
 <!DOCTYPE html>
 <html>

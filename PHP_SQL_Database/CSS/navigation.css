@@ -1,0 +1,114 @@
+.nav {
+    list-style-type: none; /*Removes bullets.*/
+    margin: 0; /*Removes browser default settings*/
+    padding: 0;
+    overflow: hidden;
+    background-color: #2E2E2E;
+    border: 1px solid #2E2E2E;
+    font-size: 30px;
+}
+
+body{
+    Margin-left:50px;
+    Margin-right:50px;
+    padding: 10px;
+}
+
+li {
+    padding-left: 10px;
+    float: left;
+    font-family: 'Quicksand', sans-serif;
+    font-style: italic;
+
+}
+.contact{
+    padding-right: 10px;
+    float: right;
+    background-color: #2E2E2E;
+    border-color: #2E2E2E;
+    font-size: 30px;
+
+}
+/* List link styling */
+li a, .dropButton {
+    font-family: 'Pacifico', cursive; /* comment out to get just quicksand menu text*/
+    display: inline-block;/*Displaying the links as block elements makes the whole link area clickable (not just the text)*/
+    color: white;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none; /* removes the link styling*/
+}
+
+/* Change the link color to lavender on hover */
+li a:hover, .dropdown:hover .dropButton {
+    background-color: lavender;
+}
+
+/* not working yet */
+/*li.active {*/
+/*background-color: lavender;*/
+/*color: white;*/
+/*}*/
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 16px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {background-color: lavender}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.no_resize {
+    width: 1000px;
+    list-style-type: inside;
+}
+
+.takeQuizButton{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-style: oblique;
+    font-size: 20px;
+    cursor: pointer; /*changes the mouse cursor when hovered over.*/
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: black;
+    background-color: #2E2E2E;
+    margin: 0 auto;
+    display: block;
+    /*float: bottom;*/
+    color: white;
+    width: 500px;
+    height: 40px;
+    border-radius: 30px; /* Used to make the shape curved*/
+
+}
+.takeQuizButton:hover{
+    background: antiquewhite;
+    color: black;
+}
+
+.example{
+    overflow: scroll;
+}
+
+h4:hover{
+    color:lightblue;
+}
+
+#backgrounds{
+    background-image:url("../CSS_examples/rock.png");
+}

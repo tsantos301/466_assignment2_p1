@@ -1,5 +1,5 @@
 <!-- to access this page http://192.168.64.2/PHP_SQL_Database/index.php -->
-
+<?php include 'navigation.php'; ?>
 <?php
 //error_reporting(E_ERROR | E_PARSE);
 
@@ -48,13 +48,13 @@ if(isset($_GET['logout'])){
 
   <?php if(isset($_SESSION['username'])) : ?>
 
-    <h3 style = "text-align: left;">Welcome: <strong><?php
+    <h3 style = "text-align: left;">Hello, <strong><?php
                             $username = $_SESSION['username'];
                             echo $username;
 
-                          ?></strong></h3>
+                          ?></strong>.</h3>
 
-      <h1>Bookmarking Service.</h1>
+<!--      <h1><u>Bookmarking Service.</u></h1>-->
       <form action="index.php" method="post">
           <label>Enter link to add:</label><br>
           <input type="text" name="urlSTRING" required/>
@@ -106,7 +106,7 @@ if(isset($_GET['logout'])){
                   $fullLink = "http://".$row['url'];
                   //echo "Link: <a>" . $row['url']. "</a><br>";
                   //<li>Agnes<span class="close">x</span></li>
-                  echo "<li><span class=\"close\" onclick='pass_String()' >x</span><a target=\"_blank\" href='".$fullLink."'>$print</a></li>";
+                  echo "<li class='links'><span class=\"close\" onclick='pass_String()' >x</span><a class = 'linkText' target=\"_blank\" href='".$fullLink."'>$print</a></li>";
               }
           } else {
               echo "No links have been Bookmarked Yet";
@@ -130,24 +130,18 @@ if(isset($_GET['logout'])){
       echo isset($_POST['data']);
       //if delete button is clicked add a URL to the list .... data is the url string passed to be deleted.
       if(isset($_POST['data'])) {
-          echo "do we get to this?69696";
           $urlDeleteString = $_POST['data'];
           removeLink($db,$urlDeleteString,$username);
           unset($_POST);
+          header("Location: login.php");
 
       }
-
-      //removeLink($db,"www.apple.ca",$username);
       //mysqli_close($db);
 
 
       ?>
       </ul>
-      <!--    ~~~~~~~~~~~Logout ~~~~~~~~~~~-->
 
-      <!--<button onclick="location.href="index.html?logout='1'">Logout</button>-->
-      <!--    <button>Logout<a href="index.php?logout='1'" target="_blank"></a></button>-->
-      <p><a href="index.php?logout='1'">Logout</a></p>
 
       <script>
           function pass_String(urlString){
@@ -175,6 +169,8 @@ if(isset($_GET['logout'])){
           }
       </script>
 
+      <!--    ~~~~~~~~~~~Logout ~~~~~~~~~~~-->
+      <p><a href="index.php?logout='1'">Logout</a></p>
 
 
   <?php endif ?>

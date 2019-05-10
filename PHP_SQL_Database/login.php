@@ -1,3 +1,4 @@
+<?php include 'navigation.php'; ?>
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
