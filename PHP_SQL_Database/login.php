@@ -29,7 +29,7 @@
         <input type="password" name="password_1" required>
       </div>
 
-        <button type="submit" name="login_user" > Login </button>
+        <button class="bigButton" type="submit" name="login_user" > Login </button>
 <!--        <a type="submit" name="login_user" onclick = "location.href='index.html'"> Login </a>-->
 <!--        <p><a href="index.php">Login</a></p>-->
 

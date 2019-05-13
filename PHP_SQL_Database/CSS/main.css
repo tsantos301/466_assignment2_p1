@@ -3,44 +3,44 @@ body{
     font-size: 30px;
     text-align: center;
 }
-#welcome{
-    font-family: 'Pacifico', cursive;
-    font-size: 60px;
+.bigButton{
     text-align: center;
-    animation-name: swing-top-fwd,roll-out-blurred-left;
-    animation-duration: 800ms;
-    animation-delay: 0ms, 1600ms;
-    animation-timing-function:  cubic-bezier(0.645, 0.045, 0.355, 1), cubic-bezier(0.755, 0.050, 0.855, 0.060);
-    animation-iteration-count: 1,1;
-    animation-fill-mode: forwards, both;
-}
-#welcome-text{
-    font-family: 'Pacifico', cursive;
-    font-size: 60px;
-    text-align: center;
-    animation-name: scale-in-bl;
-    animation-duration: 800ms;
-    animation-delay: 2700ms;
-    animation-timing-function:  cubic-bezier(0.250, 0.460, 0.450, 0.940);
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-
-}
-Button{
     font-family: 'Quicksand', sans-serif;
     font-style: oblique;
     font-size: 20px;
-    text-align: center;
-    cursor: auto; /*changes the mouse cursor when hovered over.*/
+    cursor: pointer; /*changes the mouse cursor when hovered over.*/
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     border: black;
     background-color: #2E2E2E;
-    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: 20px;
+    display: block;
+    /*float: bottom;*/
     color: white;
     width: 300px;
     height: 40px;
     border-radius: 30px; /* Used to make the shape curved*/
 
+}
+.bigButton:hover{
+    background: lavender;
+    color: black;
+}
+#editButton{
+    font-family: Arial;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    padding: 25px 22px;
+    transform: translate(0%, -52%);
+    background: #f6f6f6;
+    border: none;
+}
+#editButton:hover {
+    background: lightblue;
 }
 
 .error{
@@ -80,9 +80,9 @@ ul {
 }
 
 /* Add a light grey background color on hover */
-.links:hover {
-    background-color: #eee;
-}
+/*.links:hover {*/
+/*    background-color: #eee;*/
+/*}*/
 
 /* Style the close button (span) */
 .close {
@@ -95,4 +95,21 @@ ul {
     /*border: 1px solid black;*/
 }
 
-.close:hover {background: lightcoral;}
+.close:hover {
+    background: lightcoral;
+}
+
+.edit {
+    font-family: Arial;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    padding: 21px 16px;
+    transform: translate(0%, -50%);
+    /*border: 1px solid black;*/
+}
+
+.edit:hover {
+    background: lightblue;
+}
