@@ -30,8 +30,6 @@
       </div>
 
         <button class="bigButton" type="submit" name="login_user" > Login </button>
-<!--        <a type="submit" name="login_user" onclick = "location.href='index.html'"> Login </a>-->
-<!--        <p><a href="index.php">Login</a></p>-->
 
         <?php include('server.php') ?>
       <p> Dont have an account? <a href="registration.php">Create One Here.</a></p>

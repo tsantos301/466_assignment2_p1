@@ -109,6 +109,23 @@ h4:hover{
     color:lightblue;
 }
 
-#backgrounds{
-    background-image:url("../CSS_examples/rock.png");
+#logo{
+    /*left: 0px;*/
+    text-align: left;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#logoIMG{
+    width: 150px;
+    height: 150px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    font-family: 'Just Another Hand', cursive;
+    padding-bottom: 0;
+    margin-top: 0;
+    float: bottom;
 }

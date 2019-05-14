@@ -16,4 +16,6 @@
     <p id="welcome-text">This website is an easy to use, online bookmarking service.</p>
     </body>
 </div>
+
+<?php $GLOBALS['welcome']=true; include 'popularSites.php';?>
 </html>

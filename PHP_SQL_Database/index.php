@@ -135,8 +135,8 @@ function getList($db,$username){
       }
 
       $testing = isset($_POST['newlink']);
-      echo "hello";
-      echo $_POST['newlink'];
+//      echo "hello";
+//      echo $_POST['newlink'];
 
       //If edit button is saved edit the URL from the list on refresh
       if(isset($_POST['newlink'])) {
@@ -172,6 +172,14 @@ function getList($db,$username){
               }else{ //editing a link
                   // console.log("should come here for editing");
                   // console.log(urlString);
+
+                  if(isURL(urlString)==false){
+                      alert("Invalid URL, Please enter a valid URL");
+                      editable.contentEditable = "true";
+                      document.getElementById("editButton").innerHTML = "Editing";
+                      document.getElementById("editButton").style.backgroundColor='#f44242';
+                      return;
+                  }
                   xhttp.send("newlink=" + urlString);
                   // xhttp.send("newLink=" + urlString +"&originalLink" + originalString);
               }
@@ -194,8 +202,15 @@ function getList($db,$username){
               }
           }
 
-          function edit(){
-
+          // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+          function isURL(str) {
+              var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+              return !!pattern.test(str);
           }
 
           /* Get all elements with class="close" */
@@ -209,7 +224,6 @@ function getList($db,$username){
                   var urlString = this.parentElement.lastElementChild.innerHTML.toString();
                   //console.log(urlString);
                   pass_String(true,urlString);
-
               });
           }
 
