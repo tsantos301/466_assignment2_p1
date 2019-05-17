@@ -34,7 +34,7 @@ function addLink($db, $urlString, $username){
 
 
 function removeLink($db,$urlString,$username){
-
+    echo "delete";
     $deleteQuery = "DELETE FROM Links WHERE url = '$urlString' AND username = '$username'";
 
     mysqli_query($db,$deleteQuery);
@@ -71,6 +71,12 @@ function getList($db,$username){
         echo "No links have been Bookmarked Yet";
     }
 }
+
+
+echo var_dump($_POST);
+echo $_POST['data'];
+echo isset($_POST['data']);
+
 ?>
 
 <!DOCTYPE html>
@@ -119,15 +125,18 @@ function getList($db,$username){
       // Create connection
       $db = mysqli_connect('localhost','root','','Bookmarking') or die("could not connect to database");
 
+
       //If the add button was clicked add a URL to the list on refresh
       if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['addLINK']) and $_POST['urlSTRING']!= NULL) {
           $urlString = $_POST['urlSTRING'];
+          echo "add";
           addLink($db,$urlString,$username);
           unset($_POST);
       }
 
       //If delete button is clicked remove a URL from the list on refresh .... data is the url string passed to be deleted.
       if(isset($_POST['data'])) {
+          echo "delete";
           $urlDeleteString = $_POST['data'];
           removeLink($db,$urlDeleteString,$username);
           unset($_POST);
@@ -135,14 +144,15 @@ function getList($db,$username){
       }
 
       $testing = isset($_POST['newlink']);
-//      echo "hello";
-//      echo $_POST['newlink'];
+      //echo "hello";
+      echo $_POST['newlink'];
 
       //If edit button is saved edit the URL from the list on refresh
       if(isset($_POST['newlink'])) {
-          echo "yelloe";
+          echo "yelloe";;
           $newURL = $_POST['newlink'];
           $oldURL = $_POST['originalLink'];
+          //addLink($db,$newURL,$username);
           editLink($db,$oldURL,$newURL,$username);
           unset($_POST);
           //header("Location: login.php");
@@ -163,25 +173,31 @@ function getList($db,$username){
 
           function pass_String(remove,urlString,originalString){
               console.log("this is pass string");
+
+
               var xhttp = new XMLHttpRequest();
+
               xhttp.open("POST", "index.php", true);
               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
               console.log("before if");
               if(remove==true) { //Deleting a link
                   xhttp.send("data=" + urlString);
               }else{ //editing a link
-                  // console.log("should come here for editing");
-                  // console.log(urlString);
+                   console.log("should come here for editing");
+                   console.log(urlString);
+                   console.log(originalString);
 
-                  if(isURL(urlString)==false){
-                      alert("Invalid URL, Please enter a valid URL");
-                      editable.contentEditable = "true";
-                      document.getElementById("editButton").innerHTML = "Editing";
-                      document.getElementById("editButton").style.backgroundColor='#f44242';
-                      return;
-                  }
-                  xhttp.send("newlink=" + urlString);
-                  // xhttp.send("newLink=" + urlString +"&originalLink" + originalString);
+                  // if(isURL(urlString)==false){
+                  //     alert("Invalid URL, Please enter a valid URL");
+                  //     editable.contentEditable = "true";
+                  //     document.getElementById("editButton").innerHTML = "Editing";
+                  //     document.getElementById("editButton").style.backgroundColor='#f44242';
+                  //     return;
+                  // }
+
+                  //xhttp.send("newlink=" + urlString);
+
+                   xhttp.send("newlink=" + urlString +"&originalLink=" + originalString);
               }
 
               location.reload();

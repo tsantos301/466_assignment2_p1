@@ -40,11 +40,11 @@
       </div>
 
       <button class="bigButton" type="submit" name="register_user"> Submit </button>
-
+	</form>
       <p> Already a user? <a href= "login.php" > Login Here </a></p>
 
     <?php include('errors.php') ?>
-
+	
   </div>
 </body>
 

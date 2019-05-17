@@ -10,5 +10,5 @@
         <h3 class = "error"><?php echo $error ?></h3>
 
       <?php endforeach ?>
-    </div
+    </div>
   <?php endif ?>

@@ -33,7 +33,7 @@
 
         <?php include('server.php') ?>
       <p> Dont have an account? <a href="registration.php">Create One Here.</a></p>
-
+	</form>
   </div>
 </body>
 
