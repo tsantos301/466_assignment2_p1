@@ -7,7 +7,6 @@ for (i = 0; i < closebtns.length; i++) {
     closebtns[i].addEventListener("click", function () {
         this.parentElement.style.display = 'none';
         var test = this.parentElement.lastElementChild.innerHTML;
-        console.log(test);
         <?php echo add(1,2);?>
     });
 }

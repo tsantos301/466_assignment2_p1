@@ -23,8 +23,6 @@ function getPopular($db){
         while($row = mysqli_fetch_assoc($result)) {
             $print = $row['url'];
             $fullLink = "http://".$row['url'];
-            //echo "Link: <a>" . $row['url']. "</a><br>";
-            //<li>Agnes<span class="close">x</span></li>
             echo "<li class='links'><label style='text-align: left;'>$rank.</label><a class = 'linkText' target=\"_blank\" href=".$fullLink." contentEditable = 'false'>$print</a></li>";
             $rank+=1;
         }
@@ -34,7 +32,7 @@ function getPopular($db){
 }
 
 // Create connection
-$db = mysqli_connect('localhost','root','','Bookmarking') or die("could not connect to database");
+$db = mysqli_connect('localhost','root','Allen07150794y','Bookmarking') or die("could not connect to database");
 getPopular($db);
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 /*
-1. Start up our session
+1. Start up session
 2. Initialize variables
 3. Connect to SQLDatabase
-4. Write the logic for registering the user onto the database
+4. Logic for registering the user onto the database
 */
 
 //Start Session
@@ -13,13 +13,10 @@ session_start();
 //Initializing variables
 $username = "";
 $email = "";
-
 $errors = array();
 
-
-
 //Connect to database mysqli_connect(IP_ADDRESS_OF_DATABASE,'USER_TO_LOGIN_WITH','PASSWORD','DATABASE_NAME_YOU_WANT')
-$db = mysqli_connect('localhost','root','','Bookmarking') or die("could not connect to database");
+$db = mysqli_connect('localhost','root','Allen07150794y','Bookmarking') or die("could not connect to database");
 
 //Register Users
 
@@ -29,12 +26,7 @@ $email = mysqli_real_escape_string($db,$_POST['email']);
 $password_1 = mysqli_real_escape_string($db,$_POST['password_1']);
 $password_2 = mysqli_real_escape_string($db,$_POST['password_2']);
 
-// Validating user form input -- dont need this. form does it for us.
-
-//if(empty($username)) {array_push($errors,"Username is required");}
-//if(empty($email)) {array_push($errors,"Email is required");}
-//if(empty($password_1)) {array_push($errors,"Password is required");}
-//if(empty($password_2)) {array_push($errors,"Must verify password");}
+//Password check
 if($password_1 != $password_2){array_push($errors,"Passwords must match");}
 
 //Check if username already exists in database
@@ -71,7 +63,6 @@ if(count($errors)==0 && isset($_POST['register_user'])){
 }
 
 //Login the User
-//button name was login_user
 if(isset($_POST['login_user'])){
   $username = mysqli_real_escape_string($db,$_POST['username']);
   $password = mysqli_real_escape_string($db,$_POST['password_1']);
@@ -83,8 +74,6 @@ if(isset($_POST['login_user'])){
   if(empty($password)){
     array_push($errors, "Password is required");
   }
-
-  //if(count($errors)==0){
 
     $password = md5($password);
     $query_verifyPassword = "SELECT * FROM Users WHERE PASSWORD ='$password' AND username = '$username'";
@@ -99,25 +88,5 @@ if(isset($_POST['login_user'])){
     }else{
       array_push($errors,"Wrong Username or Password, please try again");
     }
- // }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  ?>
