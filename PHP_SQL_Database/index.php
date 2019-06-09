@@ -145,7 +145,7 @@ function getList($db,$username){
           function pass_String(remove,urlString,originalString){
 
               var xhttp = new XMLHttpRequest();
-              xhttp.open("POST", "index.php", true);
+              xhttp.open("POST", "index.php", false);
               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
               if(remove==true) { //Deleting a link
                   xhttp.send("data=" + urlString);
