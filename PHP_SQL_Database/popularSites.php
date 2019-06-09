@@ -22,8 +22,7 @@ function getPopular($db){
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
             $print = $row['url'];
-            $fullLink = "http://".$row['url'];
-            echo "<li class='links'><label style='text-align: left;'>$rank.</label><a class = 'linkText' target=\"_blank\" href=".$fullLink." contentEditable = 'false'>$print</a></li>";
+            echo "<li class='links'><label style='text-align: left;'>$rank.</label><a class = 'linkText' target=\"_blank\" href=".$row['url']." contentEditable = 'false'>$print</a></li>";
             $rank+=1;
         }
     } else {
