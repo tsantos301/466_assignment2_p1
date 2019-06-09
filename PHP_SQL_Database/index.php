@@ -33,7 +33,7 @@ function addLink($db, $urlString, $username){
 
 
 function removeLink($db,$urlString,$username){
-    $deleteQuery = "DELETE FROM Links WHERE url = '$urlString' AND username = '$username'";
+    $deleteQuery = "DELETE FROM Links WHERE url = '$urlString' AND username = '$username' LIMIT 1";
 
           if ($db->query($deleteQuery) === FALSE) {
               echo "Error deleting record: " . $db->error;
@@ -67,7 +67,11 @@ function getList($db,$username){
 <html>
 <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Shadows+Into+Light" rel="stylesheet">
 <head>
-  <title>Homepage</title>
+    <!--Prevent caching from happening so that the list displays correctly-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Homepage</title>
     <style>
         <?php include 'CSS/main.css';?>
     </style>
